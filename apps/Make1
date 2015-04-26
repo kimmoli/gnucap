@@ -118,8 +118,8 @@ DISTCLEANFILES = $(CLEANFILES)
 MAINTAINERCLEANFILES = $(DISTCLEANFILES)
 #------------------------------------------------------------------------
 #------------------------------------------------------------------------
-LIBPATH = `pwd | sed 's/apps/lib/g'`
-MODELGEN = `pwd | sed 's/apps/modelgen/g'`/gnucap-modelgen
+LIBPATH = `pwd | sed 's/\bapps\b/lib/g'`
+MODELGEN = `pwd | sed 's/\bapps\b/modelgen/g'`/gnucap-modelgen
 #------------------------------------------------------------------------
 %.h : %.model
 	(export LD_LIBRARY_PATH=$(LIBPATH); $(MODELGEN) -h $<)

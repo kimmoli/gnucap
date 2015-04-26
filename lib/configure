@@ -27,16 +27,16 @@ sed -e "s#/usr/local#$prefix#" ../Makefile.template > Makefile
 echo "CCFLAGS = -fPIC \\" >Make.ccflags
 echo "LIBS = -ldl \\" >Make.libs
     
-rm -f a.out
-g++ -lreadline -ltermcap test_readline.cc
-if [ -f a.out ] ; then
-    echo "using readline"
-    echo "-DHAVE_LIBREADLINE \\" >>Make.ccflags
-    echo "-lreadline -ltermcap \\" >>Make.libs
-else
-    echo "either libtermcap or libreadline is missing - not using readline"
-fi
-rm -f a.out
+#rm -f a.out
+#g++ -lreadline -ltermcap test_readline.cc
+#if [ -f a.out ] ; then
+#    echo "using readline"
+#    echo "-DHAVE_LIBREADLINE \\" >>Make.ccflags
+#    echo "-lreadline -ltermcap \\" >>Make.libs
+#else
+#    echo "either libtermcap or libreadline is missing - not using readline"
+#fi
+#rm -f a.out
 
 echo "-DUNIX -O2 -DNDEBUG -I. -I../include -I../../include -W" >>Make.ccflags
 echo "" >>Make.libs
@@ -63,5 +63,6 @@ CAT_EOF
 
 cat Make.ccflags Make.libs Make.sys >Make2
 rm  Make.ccflags Make.libs Make.sys
+cat Make1 Make2 ../Make3 Make.depend >O/Makefile
 
 exit 0
